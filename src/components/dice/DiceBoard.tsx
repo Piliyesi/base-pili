@@ -1,9 +1,29 @@
+"use client";
+
+import { useState } from "react";
 import PlayerPanel from "./PlayerPanel";
 import BetSelector from "./BetSelector";
 import RollButton from "./RollButton";
 import DiceDisplay from "./DiceDisplay";
 
 export default function DiceBoard() {
+  const [face, setFace] = useState("🎲");
+  const [isRolling, setIsRolling] = useState(false);
+
+  function handleRoll() {
+    setIsRolling(true);
+
+    setTimeout(() => {
+      const faces = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
+
+      const randomFace =
+        faces[Math.floor(Math.random() * faces.length)];
+
+    setFace(randomFace);
+    setIsRolling(false);
+  }, 1000);
+}
+
   return (
     <section className="mx-auto mt-24 max-w-7xl px-6">
 
@@ -32,11 +52,17 @@ export default function DiceBoard() {
       </div>
 
       <div className="mt-8">
-        <RollButton />
+        <RollButton
+          onRoll={handleRoll}
+          isRolling={isRolling}
+        />
       </div>
 
       <div className="mt-8">
-        <DiceDisplay />
+        <DiceDisplay
+          face={face}
+          isRolling={isRolling}
+        />
       </div>
 
     </section>
