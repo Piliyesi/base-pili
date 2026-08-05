@@ -1,6 +1,7 @@
 import PlayerPanel from "./PlayerPanel";
 import BetSelector from "./BetSelector";
 import RollButton from "./RollButton";
+import DiceDisplay from "./DiceDisplay";
 
 export default function DiceBoard() {
   return (
@@ -32,6 +33,10 @@ export default function DiceBoard() {
 
       <div className="mt-8">
         <RollButton />
+      </div>
+
+      <div className="mt-8">
+        <DiceDisplay />
       </div>
 
     </section>
