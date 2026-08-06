@@ -2,12 +2,14 @@ type DiceDisplayProps = {
   face: string;
   isRolling: boolean;
   rollValue: number | null;
+  didWin: boolean | null;
 };
 
 export default function DiceDisplay({
   face,
   isRolling,
   rollValue,
+  didWin
 }: DiceDisplayProps) {
   return (
     <div className="rounded-3xl border border-blue-900 bg-zinc-900 p-8 text-center">
@@ -26,6 +28,16 @@ export default function DiceDisplay({
       <p className="mt-5 text-lg font-semibold text-white">
          {rollValue === null ? "Result: -" : `Result: ${rollValue}`}
       </p>
+
+      {rollValue !== null && (
+        <p
+           className={`mt-2 text-lg font-bold ${
+              didWin ? "text-green-400" : "text-red-400"
+           }`}
+        >
+           {didWin ? "🎉 You Win!" : "❌ Try Again"}
+        </p>
+       )}
 
       <p className="mt-5 text-sm text-gray-500">
         {isRolling ? "Rolling..." : "Roll the dice to see your result."}

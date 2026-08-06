@@ -10,6 +10,7 @@ export default function DiceBoard() {
   const [face, setFace] = useState("🎲");
   const [isRolling, setIsRolling] = useState(false);
   const [rollValue, setRollValue] = useState<number | null>(null);
+  const [didWin, setDidWin] = useState<boolean | null>(null);
 
   function handleRoll() {
     setIsRolling(true);
@@ -29,6 +30,7 @@ export default function DiceBoard() {
 
       setFace(randomDice.face);
       setRollValue(randomDice.value);
+      setDidWin(randomDice.value === 6);
       setIsRolling(false);
     }, 1000);
   }
@@ -72,6 +74,7 @@ export default function DiceBoard() {
           face={face}
           isRolling={isRolling}
           rollValue={rollValue}
+          didWin={didWin}
         />
       </div>
 
