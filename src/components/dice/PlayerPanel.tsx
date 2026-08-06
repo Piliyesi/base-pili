@@ -1,8 +1,12 @@
 type PlayerPanelProps = {
   xp: number;
+  winStreak: number;
 };
 
-export default function PlayerPanel({ xp }: PlayerPanelProps) {
+export default function PlayerPanel({
+  xp,
+  winStreak,
+}: PlayerPanelProps) {
   const level = Math.floor(xp / 100) + 1;
   const levelProgress = xp % 100;
 
@@ -16,9 +20,18 @@ export default function PlayerPanel({ xp }: PlayerPanelProps) {
           <p className="font-medium text-white">Not Connected</p>
         </div>
 
-        <div>
-          <p className="text-xs text-gray-500">XP</p>
-          <p className="font-medium text-white">{xp} XP</p>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <p className="text-xs text-gray-500">XP</p>
+            <p className="font-medium text-white">{xp} XP</p>
+          </div>
+
+          <div>
+            <p className="text-xs text-gray-500">Win Streak</p>
+            <p className="font-medium text-white">
+              {winStreak} 🔥
+            </p>
+          </div>
         </div>
 
         <div>
