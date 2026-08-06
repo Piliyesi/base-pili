@@ -13,6 +13,7 @@ export default function DiceBoard() {
   const [didWin, setDidWin] = useState<boolean | null>(null);
   const [xp, setXp] = useState(0);
   const [winStreak, setWinStreak] = useState(0);
+  const [rollHistory, setRollHistory] = useState<number[]>([]);
 
   function handleRoll() {
     setIsRolling(true);
@@ -32,6 +33,9 @@ export default function DiceBoard() {
 
       setFace(randomDice.face);
       setRollValue(randomDice.value);
+      setRollHistory((current) =>
+        [randomDice.value, ...current].slice(0, 5)
+      );
       setDidWin(randomDice.value === 6);
 
       if (randomDice.value === 6) {
@@ -68,6 +72,7 @@ export default function DiceBoard() {
         <PlayerPanel
           xp={xp}
           winStreak={winStreak}
+          rollHistory={rollHistory}
         />
       </div>
 

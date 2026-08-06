@@ -1,11 +1,13 @@
 type PlayerPanelProps = {
   xp: number;
   winStreak: number;
+  rollHistory: number[];
 };
 
 export default function PlayerPanel({
   xp,
   winStreak,
+  rollHistory,
 }: PlayerPanelProps) {
   const level = Math.floor(xp / 100) + 1;
   const levelProgress = xp % 100;
@@ -36,7 +38,9 @@ export default function PlayerPanel({
 
         <div>
           <p className="text-xs text-gray-500">Level</p>
-          <p className="font-medium text-white">Level {level}</p>
+          <p className="font-medium text-white">
+            Level {level}
+          </p>
         </div>
 
         <div>
@@ -50,6 +54,27 @@ export default function PlayerPanel({
               className="h-full rounded-full bg-blue-600 transition-all duration-300"
               style={{ width: `${levelProgress}%` }}
             />
+          </div>
+        </div>
+
+        <div className="mt-6 border-t border-zinc-800 pt-4">
+          <p className="mb-2 text-xs text-gray-500">
+            Last Rolls
+          </p>
+
+          <div className="flex flex-wrap gap-2">
+            {rollHistory.map((roll, index) => (
+              <div
+                key={index}
+                className={`flex h-9 w-9 items-center justify-center rounded-lg border text-sm font-bold ${
+                  roll === 6
+                    ? "border-green-500 text-green-400"
+                    : "border-zinc-700 text-gray-300"
+                }`}
+              >
+                {roll}
+              </div>
+            ))}
           </div>
         </div>
       </div>
