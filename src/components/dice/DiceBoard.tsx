@@ -9,20 +9,29 @@ import DiceDisplay from "./DiceDisplay";
 export default function DiceBoard() {
   const [face, setFace] = useState("🎲");
   const [isRolling, setIsRolling] = useState(false);
+  const [rollValue, setRollValue] = useState<number | null>(null);
 
   function handleRoll() {
     setIsRolling(true);
 
     setTimeout(() => {
-      const faces = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
+      const dice = [
+        { value: 1, face: "⚀" },
+        { value: 2, face: "⚁" },
+        { value: 3, face: "⚂" },
+        { value: 4, face: "⚃" },
+        { value: 5, face: "⚄" },
+        { value: 6, face: "⚅" },
+      ];
 
-      const randomFace =
-        faces[Math.floor(Math.random() * faces.length)];
+      const randomDice =
+        dice[Math.floor(Math.random() * dice.length)];
 
-    setFace(randomFace);
-    setIsRolling(false);
-  }, 1000);
-}
+      setFace(randomDice.face);
+      setRollValue(randomDice.value);
+      setIsRolling(false);
+    }, 1000);
+  }
 
   return (
     <section className="mx-auto mt-24 max-w-7xl px-6">
@@ -62,6 +71,7 @@ export default function DiceBoard() {
         <DiceDisplay
           face={face}
           isRolling={isRolling}
+          rollValue={rollValue}
         />
       </div>
 
