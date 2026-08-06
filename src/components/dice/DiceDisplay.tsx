@@ -39,6 +39,12 @@ export default function DiceDisplay({
         </p>
        )}
 
+       {didWin && (
+          <p className="mt-2 text-sm font-semibold text-blue-400">
+            +10 XP earned
+          </p>
+        )}
+
       <p className="mt-5 text-sm text-gray-500">
         {isRolling ? "Rolling..." : "Roll the dice to see your result."}
       </p>
