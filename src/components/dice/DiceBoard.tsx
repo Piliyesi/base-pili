@@ -11,6 +11,7 @@ export default function DiceBoard() {
   const [isRolling, setIsRolling] = useState(false);
   const [rollValue, setRollValue] = useState<number | null>(null);
   const [didWin, setDidWin] = useState<boolean | null>(null);
+  const [xp, setXp] = useState(0);
 
   function handleRoll() {
     setIsRolling(true);
@@ -31,6 +32,11 @@ export default function DiceBoard() {
       setFace(randomDice.face);
       setRollValue(randomDice.value);
       setDidWin(randomDice.value === 6);
+
+      if (randomDice.value === 6) {
+        setXp((currentXp) => currentXp + 10);
+      }
+
       setIsRolling(false);
     }, 1000);
   }
@@ -55,7 +61,7 @@ export default function DiceBoard() {
       </div>
 
       <div className="mt-8">
-        <PlayerPanel />
+        <PlayerPanel xp={xp} />
       </div>
 
       <div className="mt-8">
